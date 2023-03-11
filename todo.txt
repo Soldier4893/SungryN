@@ -1,4 +1,4 @@
-1. Move the drinks down at a steady pace
-2. no more than 5 drinks on the screen at a time (drinks list size is 5)
-3. if drink y coordinate is above 600/700 ish, GAME OVER!!! End game.
-4. if any drink object overlaps with Sameer, increment score by 1 (add a score counter to the screen), and pop drink from drinks list
+1. if drink y coordinate is above 600/700 ish, GAME OVER!!! End game. (add a game over screen)
+2. reduce the hitbox of sameer and the drink objects
+3. MENU (play game, credits)
+4. 3 LIVES for Sameer
