@@ -1,3 +1,4 @@
-1. Music
-2. Menu + Play Again
-3. Background
+1. Play Again Button
+2. Place "Resume" Button Image with "Play" Button Image
+3. Place "Options" Button Image with "Credits" Button Image
+4. Add Credits Information

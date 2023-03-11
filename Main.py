@@ -17,14 +17,15 @@ coffeeImg = pg.image.load('./assets/coffee.png')
 backgroundImg = pg.image.load('./assets/background.png')
 
 # load button images
-resume_img = pg.image.load("button_images/button_resume.png").convert_alpha()
-options_img = pg.image.load("button_images/button_options.png").convert_alpha()
+# TODO: Replace BUTTON IMAGES URLS for PLAY and CREDITS (LEO)
+play_img = pg.image.load("button_images/button_resume.png").convert_alpha()
+credits_img = pg.image.load("button_images/button_options.png").convert_alpha()
 quit_img = pg.image.load("button_images/button_quit.png").convert_alpha()
 back_img = pg.image.load('button_images/button_back.png').convert_alpha()
 
 # create button instances
-resume_button = button.Button(50, 150, resume_img, 1)
-credits_button = button.Button(50, 275, options_img, 1)
+play_button = button.Button(50, 150, play_img, 1)
+credits_button = button.Button(50, 275, credits_img, 1)
 quit_button = button.Button(50, 400, quit_img, 1)
 back_button = button.Button(332, 450, back_img, 1)
 
@@ -97,7 +98,7 @@ if __name__ == "__main__":
             #check menu state
             if menu_state == "main":
                 #draw pause screen buttons
-                if resume_button.draw(win):
+                if play_button.draw(win):
                     game_has_started = True
                 if credits_button.draw(win):
                     menu_state = "credits"
@@ -105,6 +106,7 @@ if __name__ == "__main__":
                     run = False
             #check if the credits menu is open
             if menu_state == "credits":
+                # TODO: ADD CREDIT TEXT (LEO)
                 #draw credits screen
                 if back_button.draw(win):
                     menu_state = "main"
