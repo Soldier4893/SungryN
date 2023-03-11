@@ -4,6 +4,11 @@ import numpy as np
 from Player import Player
 from Drink import Drink
 
+# Initialize pygame
+pygame.init()
+win = pygame.display.set_mode([700, 700])  # Set up the drawing window
+pygame.display.set_caption("HUNGRY SN")  # Set caption
+
 # Images
 snImg = pygame.image.load('./assets/sn2.png')
 bobaImg = pygame.image.load('./assets/boba.png')
@@ -14,22 +19,26 @@ clock = pygame.time.Clock()
 player = Player(350, 600, 40, 60, 10, snImg)
 drinks_lst = []  # This will be used to store all the drinks in the game
 start_time = time.time()
+font = pygame.font.SysFont('comicsans', 30, bold=True, italic=False)
+SCORE = 0
 
 
 def redrawGameWindow(win):
     win.fill((255,255,255))  # Fills the screen with white (Refreshes the screen)
-    player.draw(win)  # Draws the player to the screen
-    for drink in drinks_lst:  # This will loop through all the drinks in the game
-        drink.draw(win)  # This will draw the drink to the screen
+
+    # Drawing the player and drink objects to the screen
+    player.draw(win)
+    for drink in drinks_lst:  
+        drink.draw(win)
+
+    # Draw the score to the screen
+    text = font.render("Score: " + str(SCORE), 1, (0,0,0))
+    win.blit(text, (10, 10))
+
     pygame.display.update() # This updates the screen so we can see our SN
 
 
-if __name__ == "__main__":
-    # Initialize pygame
-    pygame.init()
-    win = pygame.display.set_mode([700, 700])  # Set up the drawing window
-    pygame.display.set_caption("HUNGRY SN")  # Set caption
-    
+if __name__ == "__main__":    
     # Run until the user asks to quit
     run = True
     while run:
@@ -54,7 +63,8 @@ if __name__ == "__main__":
         # If the right arrow key is pressed and the player is not at the right edge of the screen
         if keys[pygame.K_RIGHT] and player.x < 680 - player.width - player.vel:
             player.x += player.vel
-            
+        
+        # Code to move the drinks down the screen
         for drink in drinks_lst:
             drink.y += drink.vel
             if drink.y > 700:
@@ -62,11 +72,10 @@ if __name__ == "__main__":
                 run = False
             if drink.y > 500:
                 distance = tuple(np.subtract((player.x, player.y), (drink.x, drink.y)))
-                if np.linalg.norm(distance) < player.r+drink.r:
+                if np.linalg.norm(distance) < player.r + drink.r:
                     drinks_lst.remove(drink)
+                    SCORE += 1
 
-        
-        
         redrawGameWindow(win)  # This will redraw the game window
 
     pygame.quit()  # If we exit the loop this will execute and close our game
