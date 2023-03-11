@@ -21,6 +21,7 @@ drinks_lst = []  # This will be used to store all the drinks in the game
 start_time = time.time()
 font = pygame.font.SysFont('comicsans', 30, bold=True, italic=False)
 SCORE = 0
+gave_over = False
 
 
 def redrawGameWindow(win):
@@ -34,6 +35,10 @@ def redrawGameWindow(win):
     # Draw the score to the screen
     text = font.render("Score: " + str(SCORE), 1, (0,0,0))
     win.blit(text, (10, 10))
+    # If the game is over, draw the game over text to the screen
+    text = font.render("GAME OVER!", 1, (0,0,0))
+    if gave_over:
+        win.blit(text, (250, 350))  
 
     pygame.display.update() # This updates the screen so we can see our SN
 
@@ -45,8 +50,8 @@ if __name__ == "__main__":
         # pygame.time.delay(100) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
         clock.tick(60)  # This will set the FPS to 60
 
-        # This will add a drink to the game every 2 seconds
-        if time.time() - start_time > 2:
+        # This will add a drink to the game every 2 seconds if the game is not over
+        if time.time() - start_time > 2 and not gave_over:
             drinks_lst.append(Drink((bobaImg, coffeeImg)))
             start_time = time.time()
 
@@ -69,7 +74,7 @@ if __name__ == "__main__":
             drink.y += drink.vel
             if drink.y > 700:
                 drinks_lst.remove(drink)
-                run = False
+                gave_over = True
             if drink.y > 500:
                 distance = tuple(np.subtract((player.x, player.y), (drink.x, drink.y)))
                 if np.linalg.norm(distance) < player.r + drink.r:
