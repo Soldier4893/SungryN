@@ -1,11 +1,11 @@
 import random as r
 
 class Drink:
-    def __init__(self, window, img, ticks):
-        self.window = window
-        self.img = img
+    def __init__(self, img_tuple):
+        self.img = img_tuple[r.randint(0, len(img_tuple) - 1)]
         self.x = r.randint(0, 600)
         self.y = 0
-        self.ticks = ticks
         self.vel = 10
 
+    def draw(self, win):
+        win.blit(self.img, (self.x, self.y))
