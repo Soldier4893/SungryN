@@ -1,4 +1,5 @@
-1. Play Again Button
-2. Place "Resume" Button Image with "Play" Button Image
-3. Place "Options" Button Image with "Credits" Button Image
-4. Add Credits Information
+1. Add Credits Information
+2. Replace "Resume" Button Image with "Play" Button Image
+3. Replace "Options" Button Image with "Credits" Button Image
+4. Replace "Resume" button during gameplay with "Play Again" button
+5. Add High Score Feature (DJ)
