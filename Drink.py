@@ -6,7 +6,7 @@ class Drink:
         self.x = r.randint(0, 600)
         self.y = 0
         self.vel = 6
-        self.r = 64
+        self.r = 4
 
     def draw(self, win):
         win.blit(self.img, (self.x, self.y))
