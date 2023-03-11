@@ -4,6 +4,7 @@ import numpy as np
 from Player import Player
 from Drink import Drink
 import button
+import os.path
 
 # Initialize pg
 pg.init()
@@ -43,6 +44,7 @@ DIRECTION = 0
 TEXT_COL = (255, 255, 255)
 menu_state = "main"
 game_has_started = False
+high_score_file_name = "high_score.txt"
 
 # Function to draw text to the screen
 def draw_text(text, font, text_col, x, y):
@@ -76,9 +78,18 @@ def redrawGameWindow(win, direction):
     # Draw lives to the screen
     draw_text("Lives: " + str(LIVES), font, (0,0,0), 10, 50)
     
-    # If the game is over, draw the game over text to the screen
+    # If the game is over, draw the "game over" and "high score" texts to the screen
     if LIVES == 0:
+        # Read the high score from the file
+        with open(high_score_file_name, 'r') as f:
+            high_score = int(f.read())
+        if SCORE > high_score:
+            with open(high_score_file_name, 'w') as f:
+                f.write(str(SCORE))
+            
         draw_text("GAME OVER!", font, "red", 250, 350)
+        draw_text(f'High Score: {high_score}', font, "red", 250, 400)
+        draw_text(f'Your Score: {SCORE}', font, "red", 250, 450)
 
         # Draw the play again button to the screen
         if play_again_button.draw(win):
@@ -88,8 +99,12 @@ def redrawGameWindow(win, direction):
 
 
 if __name__ == "__main__":    
-    
-    direction = 0
+    # if high score file does not exist, create it and set the high score to 0
+    if not os.path.isfile(high_score_file_name):
+        with open(high_score_file_name, 'w') as f:
+            f.write('0')
+
+    direction = 0  # This will be used to store the direction the player is moving in
     
     # Music
     pg.mixer.init()
