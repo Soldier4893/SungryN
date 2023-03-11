@@ -36,22 +36,29 @@ def redrawGameWindow(win):
     # Draw the score to the screen
     text = font.render("Score: " + str(SCORE), 1, (0,0,0))
     win.blit(text, (10, 10))
-    
     # Draw lives to the screen
     text = font.render("Lives: " + str(LIVES), 2, (0,0,0))
     win.blit(text, (10, 50))
+    # If the game is over, draw the game over text to the screen
+    text = font.render("GAME OVER!", 1, (0,0,0))
+    if LIVES == 0:
+        win.blit(text, (250, 350))  
 
     pygame.display.update() # This updates the screen so we can see our SN
 
 if __name__ == "__main__":    
     # Run until user runs out of lives
     run = True
-    while LIVES > 0 and run:
+    while run:
         # pygame.time.delay(100) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
         clock.tick(60)  # This will set the FPS to 60
 
-        # This will add a drink to the game every 2 seconds
-        if time.time() - start_time > 0.1+2/DIFFICULTY:
+        # If the player runs out of lives, remove all the drinks from the game
+        if LIVES == 0:
+            drinks_lst = []
+
+        # This will add a drink to the game every 2 seconds (decreases with difficulty) if the game is not over
+        if time.time() - start_time > 0.1+2/DIFFICULTY and LIVES > 0:
             drinks_lst.append(Drink((bobaImg, coffeeImg)))
             start_time = time.time()
             if DIFFICULTY < 50:
