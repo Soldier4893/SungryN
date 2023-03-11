@@ -63,7 +63,8 @@ if __name__ == "__main__":
         # If the right arrow key is pressed and the player is not at the right edge of the screen
         if keys[pygame.K_RIGHT] and player.x < 680 - player.width - player.vel:
             player.x += player.vel
-            
+        
+        # Code to move the drinks down the screen
         for drink in drinks_lst:
             drink.y += drink.vel
             if drink.y > 700:
@@ -71,11 +72,10 @@ if __name__ == "__main__":
                 run = False
             if drink.y > 500:
                 distance = tuple(np.subtract((player.x, player.y), (drink.x, drink.y)))
-                if np.linalg.norm(distance) < player.r+drink.r:
+                if np.linalg.norm(distance) < player.r + drink.r:
                     drinks_lst.remove(drink)
+                    SCORE += 1
 
-        
-        
         redrawGameWindow(win)  # This will redraw the game window
 
     pygame.quit()  # If we exit the loop this will execute and close our game
