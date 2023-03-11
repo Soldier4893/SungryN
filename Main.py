@@ -34,10 +34,11 @@ if __name__ == "__main__":
     while run:
         # pygame.time.delay(100) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay
         clock.tick(60)  # This will set the FPS to 60
+
+        # This will add a drink to the game every 2 seconds
         if time.time() - start_time > 2:
             drinks_lst.append(Drink((bobaImg, coffeeImg)))
             start_time = time.time()
-
 
         for event in pygame.event.get():  # This will loop through a list of any keyboard or mouse events.
             if event.type == pygame.QUIT: # Checks if the red button in the corner of the window is clicked
