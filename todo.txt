@@ -1,4 +1,3 @@
-1. if drink y coordinate is above 600/700 ish, GAME OVER!!! End game. (add a game over screen)
-2. reduce the hitbox of sameer and the drink objects
-3. MENU (play game, credits)
-4. 3 LIVES for Sameer
+1. Music
+2. Menu + Play Again
+3. Background
