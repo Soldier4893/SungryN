@@ -28,6 +28,7 @@ play_button = button.Button(50, 150, play_img, 1)
 credits_button = button.Button(50, 275, credits_img, 1)
 quit_button = button.Button(50, 400, quit_img, 1)
 back_button = button.Button(332, 450, back_img, 1)
+play_again_button = button.Button(600, 5, play_img, .5)
 
 # Game variables
 clock = pg.time.Clock()
@@ -48,6 +49,15 @@ def draw_text(text, font, text_col, x, y):
   img = font.render(text, True, text_col)
   win.blit(img, (x, y))
 
+# Function to reset the game
+def reset_game():
+    global drinks_lst, SCORE, LIVES, DIFFICULTY, start_time
+    drinks_lst = []
+    SCORE = 0
+    LIVES = 3
+    DIFFICULTY = 1
+    start_time = time.time()
+    pg.mixer.music.play(-1)
 
 def redrawGameWindow(win, direction):
     win.fill((255,255,255))  # Fills the screen with white (Refreshes the screen)
@@ -68,8 +78,12 @@ def redrawGameWindow(win, direction):
     
     # If the game is over, draw the game over text to the screen
     if LIVES == 0:
-        draw_text("GAME OVER!", font, (0,0,0), 250, 350)
+        draw_text("GAME OVER!", font, "red", 250, 350)
 
+        # Draw the play again button to the screen
+        if play_again_button.draw(win):
+            reset_game()
+    
     pg.display.update() # This updates the screen so we can see our SN
 
 

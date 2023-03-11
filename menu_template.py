@@ -1,3 +1,7 @@
+# Menu Template for Pygame (Credits):
+# https://www.youtube.com/watch?v=2iyx8_elcYg
+# https://github.com/russs123/pygame_tutorials/tree/main/Menu/images
+
 import pygame
 import button
 
