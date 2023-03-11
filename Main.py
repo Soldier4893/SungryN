@@ -17,25 +17,25 @@ coffeeImg = pg.image.load('./assets/coffee.png')
 backgroundImg = pg.image.load('./assets/background.png')
 
 # load button images
-# TODO: Replace BUTTON IMAGES URLS for PLAY and CREDITS (LEO)
-play_img = pg.image.load("button_images/button_resume.png").convert_alpha()
-credits_img = pg.image.load("button_images/button_options.png").convert_alpha()
-quit_img = pg.image.load("button_images/button_quit.png").convert_alpha()
-back_img = pg.image.load('button_images/button_back.png').convert_alpha()
+play_img = pg.image.load("button_images/start.png").convert_alpha()
+credits_img = pg.image.load("button_images/credits.png").convert_alpha()
+quit_img = pg.image.load("button_images/quit.png").convert_alpha()
+back_img = pg.image.load('button_images/back.png').convert_alpha()
+play_again_img = pg.image.load('button_images/playagain.png').convert_alpha()
 
 # create button instances
 play_button = button.Button(50, 150, play_img, 1)
 credits_button = button.Button(50, 275, credits_img, 1)
 quit_button = button.Button(50, 400, quit_img, 1)
 back_button = button.Button(332, 450, back_img, 1)
-play_again_button = button.Button(600, 5, play_img, .5)
+play_again_button = button.Button(500, 5, play_again_img, .5)
 
 # Game variables
 clock = pg.time.Clock()
 player = Player(350, 600, 40, 60, 10, snImg)
 drinks_lst = []  # This will be used to store all the drinks in the game
 start_time = time.time()
-font = pg.font.SysFont('comicsans', 30, bold=True, italic=False)
+font = pg.font.SysFont('arial', 30, bold=True, italic=False)
 SCORE = 0
 LIVES = 3
 DIFFICULTY = 1
@@ -120,13 +120,14 @@ if __name__ == "__main__":
                     run = False
             #check if the credits menu is open
             if menu_state == "credits":
-                # TODO: ADD CREDIT TEXT (LEO)
+                draw_text('Art, Music, Coding: Leo', font,  (255, 255, 255), 300, 100)
+                draw_text('Coding: Dj', font,  (255, 255, 255), 300, 200)
+                draw_text('Sn: Sn', font,  (255, 255, 255), 300, 300)
                 #draw credits screen
                 if back_button.draw(win):
                     menu_state = "main"
 
             pg.display.update()  # This updates the screen
-
 
         if game_has_started:
             # pg.time.delay(100) # This will delay the game the given amount of milliseconds. In our casee 0.1 seconds will be the delay

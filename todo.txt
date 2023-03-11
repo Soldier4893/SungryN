@@ -3,3 +3,5 @@
 3. Replace "Options" Button Image with "Credits" Button Image
 4. Replace "Resume" button during gameplay with "Play Again" button
 5. Add High Score Feature (DJ)
+
+2, 3, 4 done
