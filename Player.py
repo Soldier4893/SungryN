@@ -6,6 +6,7 @@ class Player(object):
         self.height = height
         self.vel = vel
         self.img = img
+        self.r = 64
 
     def draw(self, win):
         win.blit(self.img, (self.x, self.y))
