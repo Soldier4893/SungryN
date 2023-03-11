@@ -13,6 +13,7 @@ pg.display.set_caption("SUNGRYN")  # Set caption
 snImg = pg.image.load('./assets/sn2.png')
 bobaImg = pg.image.load('./assets/boba.png')
 coffeeImg = pg.image.load('./assets/coffee.png')
+backgroundImg = pg.image.load('./assets/background.png')
 
 # Game variables
 clock = pg.time.Clock()
@@ -29,6 +30,9 @@ DIRECTION = 0
 def redrawGameWindow(win, direction):
     win.fill((255,255,255))  # Fills the screen with white (Refreshes the screen)
 
+    # Draw background
+    win.blit(backgroundImg, (0, 0))
+    
     # Drawing the player and drink objects to the screen
     player.draw(win, direction)
     for drink in drinks_lst:  
@@ -55,7 +59,7 @@ if __name__ == "__main__":
     pg.mixer.init()
     pg.mixer.music.load("./assets/score.mp3")
     pg.mixer.music.set_volume(0.3)
-    pg.mixer.music.play()
+    pg.mixer.music.play(-1)
     
     # Run until user runs out of lives
     run = True
@@ -65,6 +69,7 @@ if __name__ == "__main__":
 
         # If the player runs out of lives, remove all the drinks from the game
         if LIVES == 0:
+            pg.mixer.music.pause()
             drinks_lst = []
 
         # This will add a drink to the game every 2 seconds (decreases with difficulty) if the game is not over
