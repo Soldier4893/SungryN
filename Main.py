@@ -1,6 +1,5 @@
 import pygame as pg
 import time
-import numpy as np
 from Player import Player
 from Drink import Drink
 import button
@@ -165,8 +164,8 @@ if __name__ == "__main__":
                     LIVES -= 1
                 # If the drink hits the player, remove the drink from the game and add 1 to the score
                 if drink.y > 500:
-                    distance = tuple(np.subtract((player.x, player.y), (drink.x, drink.y)))
-                    if np.linalg.norm(distance) < player.r + drink.r:
+                    distance = (player.x-drink.x)**2 + (player.y-drink.y)**2
+                    if distance < player.r + drink.r:
                         drinks_lst.remove(drink)
                         SCORE += 1
 

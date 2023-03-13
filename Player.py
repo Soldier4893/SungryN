@@ -7,7 +7,7 @@ class Player(object):
         self.height = height
         self.vel = vel
         self.img = img
-        self.r = 60
+        self.r = 3600
         self.img2 = pg.transform.flip(self.img, True, False)
 
     def draw(self, win, direction):
